@@ -3,11 +3,17 @@
 ## Backend for a simple My Contacts App
 
 Built from the ground up to understand the core working of the backend side of Web Applications
+
 Built in Node.js with the Express.js framework. 
+
 Organised with proper MVC architecture
+
 Authenticated with JWT
+
 CRUD Operations
+
 REST APIs tested with Thunder Client
+
 MongoDB used for Database
 
 ## To run on own device
