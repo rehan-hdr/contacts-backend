@@ -35,7 +35,14 @@ const createContact = asyncHandler(async (req,res) => {
 //@access public
 
 const deleteContact = asyncHandler(async (req,res) => {
-    res.status(202).json({message:"DELETE THIS CONTACT"})
+
+    const contact = await Contact.findById(req.params.id);
+    if(!contact){
+        res.status(404);
+        throw new Error("CONTACT NOT FOUND");
+    }
+    await Contact.remove();
+    res.status(200).json(contact);
 });
 
 //@desc UPDATE contact
@@ -43,7 +50,20 @@ const deleteContact = asyncHandler(async (req,res) => {
 //@access public
 
 const updateContact = asyncHandler(async(req,res) => {
-    res.status(200).json({message:`UPDATE CONTACT for ${req.params.id}`});
+
+    const contact = await Contact.findById(req.params.id);
+    if(!contact){
+        res.status(404);
+        throw new Error("CONTACT NOT FOUND");
+    }
+
+    const updatedContact = await Contact.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new : true}
+    );
+
+    res.status(200).json(updatedContact);
 });
 
 //@desc GET this one contact
